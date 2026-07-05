@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SAT Function-Form Dashboard Wiki</title>
+<style>
+  :root {
+    --bg: #f6f8fb;
+    --panel: #ffffff;
+    --ink: #1f2937;
+    --muted: #6b7280;
+    --line: #d8dee9;
+    --navy: #172554;
+    --blue: #2563eb;
+    --soft-blue: #eff6ff;
+    --green: #166534;
+    --soft-green: #ecfdf5;
+    --orange: #92400e;
+    --soft-orange: #fffbeb;
+    --red: #991b1b;
+    --soft-red: #fef2f2;
+    --purple: #5b21b6;
+    --soft-purple: #f5f3ff;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+  }
+
+  header {
+    background: linear-gradient(135deg, #111827, #172554);
+    color: white;
+    padding: 34px 42px;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 34px;
+    letter-spacing: -0.02em;
+  }
+
+  header p {
+    max-width: 980px;
+    color: #dbeafe;
+    margin: 12px 0 0;
+    font-size: 17px;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+    padding: 12px 42px;
+    z-index: 20;
+  }
+
+  nav a {
+    display: inline-block;
+    margin: 4px 16px 4px 0;
+    text-decoration: none;
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px 22px 60px;
+  }
+
+  .section {
+    margin-bottom: 24px;
+  }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 8px 24px rgba(15,23,42,0.05);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+
+  h2 {
+    margin: 0 0 14px;
+    font-size: 25px;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    margin: 20px 0 10px;
+    font-size: 19px;
+  }
+
+  h4 {
+    margin: 16px 0 8px;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: var(--soft-purple);
+    color: var(--purple);
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  .formula {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 11px 13px;
+    margin: 10px 0;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .callout {
+    border-left: 6px solid #f59e0b;
+    background: var(--soft-orange);
+    padding: 14px 16px;
+    border-radius: 12px;
+    margin: 14px 0;
+  }
+
+  .success {
+    border-left: 6px solid #22c55e;
+    background: var(--soft-green);
+    padding: 14px 16px;
+    border-radius: 12px;
+    margin: 14px 0;
+  }
+
+  .warning {
+    border-left: 6px solid #ef4444;
+    background: var(--soft-red);
+    padding: 14px 16px;
+    border-radius: 12px;
+    margin: 14px 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    background: white;
+  }
+
+  th, td {
+    border: 1px solid var(--line);
+    padding: 11px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background: #f1f5f9;
+    font-weight: 800;
+  }
+
+  .green { color: var(--green); font-weight: 800; }
+  .red { color: var(--red); font-weight: 800; }
+  .orange { color: var(--orange); font-weight: 800; }
+
+  .muted {
+    color: var(--muted);
+  }
+
+  details {
+    background: #f8fafc;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin: 12px 0;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 800;
+    color: var(--navy);
+  }
+
+  .routine {
+    counter-reset: step;
+    padding-left: 0;
+  }
+
+  .routine li {
+    list-style: none;
+    position: relative;
+    padding: 12px 12px 12px 54px;
+    margin: 10px 0;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+  }
+
+  .routine li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 14px;
+    top: 12px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: white;
+    display: grid;
+    place-items: center;
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .mini-title {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    font-weight: 800;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    padding: 30px;
+    font-size: 13px;
+  }
+
+  @media print {
+    nav { position: static; }
+    body { background: white; }
+    .card { box-shadow: none; break-inside: avoid; }
+    details { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>SAT Math Dashboard Wiki: “Displays as a Constant or Coefficient”</h1>
+  <p>
+    A one-page study dashboard for Sean’s Type 1–Type 3 function-form questions:
+    minimum/maximum endpoint values, y-intercepts in equivalent exponential forms,
+    and shifted-exponent/outside-constant traps.
+  </p>
+</header>
+
+<nav>
+  <a href="#quick">Quick Strategy</a>
+  <a href="#type1">Type 1</a>
+  <a href="#type2">Type 2</a>
+  <a href="#type3">Type 3</a>
+  <a href="#traps">Trap Table</a>
+  <a href="#practice">Practice</a>
+  <a href="#routine">Exam Routine</a>
+</nav>
+
+<main>
+
+<section id="quick" class="section card">
+  <h2>Quick Strategy: The “See It or Calculate It?” Test</h2>
+
+  <div class="callout">
+    <strong>Golden rule:</strong> These SAT questions are not only asking you to calculate a value.
+    They ask whether that value is already <strong>displayed</strong> as one visible constant or one visible coefficient.
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <span class="tag">Step 1</span>
+      <h3>Identify the target value</h3>
+      <p>Circle the exact phrase in the question:</p>
+      <ul>
+        <li>“y-coordinate of the y-intercept”</li>
+        <li>“minimum value”</li>
+        <li>“maximum value”</li>
+        <li>“f(1) = k”</li>
+        <li>“displays as a constant or coefficient”</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <span class="tag">Step 2</span>
+      <h3>Use the anchor input</h3>
+      <table>
+        <tr><th>Target</th><th>Anchor input</th></tr>
+        <tr><td>y-intercept</td><td><code>x = 0</code></td></tr>
+        <tr><td>minimum/maximum with <code>x ≥ 0</code></td><td>usually endpoint <code>x = 0</code></td></tr>
+        <tr><td><code>f(1) = k</code></td><td><code>x = 1</code></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <span class="tag">Step 3</span>
+      <h3>Ask the display question</h3>
+      <p>After finding the value, ask:</p>
+      <div class="formula">Is this exact whole value visible as one constant or one coefficient?</div>
+      <p class="muted">If you still need to add, multiply, substitute, or rewrite, then it is hidden.</p>
+    </div>
+  </div>
+</section>
+
+<section id="type1" class="section card">
+  <div class="mini-title">Type 1</div>
+  <h2>Minimum / Maximum Value Displayed as a Coefficient</h2>
+
+  <p><strong>Question pattern:</strong> “Which equation displays, as a constant or coefficient, the minimum/maximum value of the function it defines, where <code>x ≥ 0</code>?”</p>
+
+  <h3>Core idea</h3>
+  <p>For an exponential function:</p>
+  <div class="formula">A(b)^x</div>
+
+  <table>
+    <tr><th>Base</th><th>Behavior</th><th>Endpoint value on x ≥ 0</th></tr>
+    <tr><td><code>b &gt; 1</code></td><td>Increasing</td><td>Minimum occurs at <code>x = 0</code></td></tr>
+    <tr><td><code>0 &lt; b &lt; 1</code></td><td>Decreasing</td><td>Maximum occurs at <code>x = 0</code></td></tr>
+  </table>
+
+  <h3>Display test</h3>
+  <table>
+    <tr><th>Equation form</th><th>Value at x = 0</th><th>Does the equation display it?</th></tr>
+    <tr><td><code>A(b)^x</code></td><td><code>A</code></td><td class="green">Yes</td></tr>
+    <tr><td><code>A(b)^(x+c)</code></td><td><code>A(b)^c</code></td><td class="red">No, unless simplified</td></tr>
+    <tr><td><code>A(b)^x + C</code></td><td><code>A + C</code></td><td class="red">No, unless A + C is shown as one number</td></tr>
+  </table>
+
+  <h3>Apply to Sean’s Q16</h3>
+  <p>Visible equation II:</p>
+  <div class="formula">g(x) = 18(1.16)(1.4)^(x+3)</div>
+
+  <ol>
+    <li>The base is <code>1.4</code>, and <code>1.4 &gt; 1</code>. So the function is increasing.</li>
+    <li>The domain is <code>x ≥ 0</code>, so the minimum happens at the left endpoint, <code>x = 0</code>.</li>
+    <li>Plug in <code>x = 0</code>:</li>
+  </ol>
+
+  <div class="formula">g(0) = 18(1.16)(1.4)^(0+3)</div>
+  <div class="formula">g(0) = 18(1.16)(1.4)^3</div>
+
+  <p>The minimum is <code>18(1.16)(1.4)^3</code>, but the equation does not show that as one coefficient. It shows the pieces separately and has a shifted exponent <code>x+3</code>.</p>
+
+  <div class="success">
+    <strong>Conclusion for Q16:</strong> Equation II does not display the minimum value directly.
+    A form like <code>M(1.4)^x</code> would display the minimum as coefficient <code>M</code>.
+  </div>
+</section>
+
+<section id="type2" class="section card">
+  <div class="mini-title">Type 2</div>
+  <h2>Y-Intercept Hidden Inside Equivalent Exponential Forms</h2>
+
+  <p><strong>Question pattern:</strong> Original function plus equivalent forms. The question asks which form displays the y-coordinate of the y-intercept.</p>
+
+  <h3>Core idea</h3>
+  <div class="formula">y-intercept = function value when x = 0</div>
+  <p>Then you must check whether that whole value is visible as one constant or coefficient.</p>
+
+  <h3>Apply to Sean’s Q19</h3>
+  <p>Original function:</p>
+  <div class="formula">f(x) = a(3.1^x + 3.1^b)</div>
+
+  <p>Plug in <code>x = 0</code>:</p>
+  <div class="formula">f(0) = a(3.1^0 + 3.1^b)</div>
+  <div class="formula">f(0) = a(1 + 3.1^b)</div>
+
+  <p>So the y-intercept is:</p>
+  <div class="formula">a(1 + 3.1^b)</div>
+
+  <h3>Check equation I</h3>
+  <div class="formula">g(x) = a(3.1^x + k)</div>
+  <p>Because this is equivalent to the original function:</p>
+  <div class="formula">k = 3.1^b</div>
+  <p>Now plug in <code>x = 0</code>:</p>
+  <div class="formula">g(0) = a(1 + k)</div>
+  <p>The equation shows <code>a</code> and <code>k</code>, but it does not show <code>a(1+k)</code> as one constant or coefficient.</p>
+
+  <h3>Check equation II</h3>
+  <div class="formula">h(x) = a(3.1)^x + m</div>
+  <p>Equivalent form means:</p>
+  <div class="formula">m = a(3.1^b)</div>
+  <p>Plug in <code>x = 0</code>:</p>
+  <div class="formula">h(0) = a + m</div>
+  <p>The equation shows <code>a</code> and <code>m</code>, but it does not show <code>a+m</code> as one constant or coefficient.</p>
+
+  <div class="success">
+    <strong>Conclusion for Q19:</strong> Neither I nor II displays the y-intercept directly.
+  </div>
+
+  <div class="warning">
+    <strong>Trap:</strong> An equivalent equation can still fail the “display” test. Equivalent means same function, not necessarily best form.
+  </div>
+</section>
+
+<section id="type3" class="section card">
+  <div class="mini-title">Type 3</div>
+  <h2>Shifted Exponent vs Outside Constant</h2>
+
+  <p><strong>Question pattern:</strong> Two functions are given. Decide whether either equation displays the y-intercept as a constant or coefficient.</p>
+
+  <h3>Apply to Sean’s Q21</h3>
+
+  <h4>Equation I</h4>
+  <div class="formula">f(x) = a(3.3)^(x+b)</div>
+  <p>Plug in <code>x = 0</code>:</p>
+  <div class="formula">f(0) = a(3.3)^(0+b)</div>
+  <div class="formula">f(0) = a(3.3)^b</div>
+
+  <p>The equation only displays coefficient <code>a</code>. But the y-intercept is <code>a(3.3)^b</code>. So equation I does not display it directly.</p>
+
+  <p>To see the hidden coefficient, rewrite:</p>
+  <div class="formula">a(3.3)^(x+b) = a(3.3)^b(3.3)^x</div>
+  <p>After rewriting, the coefficient <code>a(3.3)^b</code> is visible. But in the original equation, it was hidden.</p>
+
+  <h4>Equation II</h4>
+  <div class="formula">g(x) = a(3.3)^x + b</div>
+  <p>Plug in <code>x = 0</code>:</p>
+  <div class="formula">g(0) = a(3.3)^0 + b</div>
+  <div class="formula">g(0) = a + b</div>
+
+  <p>The equation displays <code>a</code> and <code>b</code> separately, but it does not display <code>a+b</code> as one constant or coefficient.</p>
+
+  <div class="success">
+    <strong>Conclusion for Q21:</strong> Neither I nor II displays the y-intercept directly.
+  </div>
+</section>
+
+<section id="traps" class="section card">
+  <h2>Master Trap Table</h2>
+
+  <table>
+    <tr>
+      <th>Form</th>
+      <th>Common wrong thought</th>
+      <th>Correct y-intercept</th>
+      <th>Display status</th>
+    </tr>
+    <tr>
+      <td><code>A(b)^x</code></td>
+      <td>Coefficient is y-intercept</td>
+      <td><code>A</code></td>
+      <td class="green">Displayed</td>
+    </tr>
+    <tr>
+      <td><code>A(b)^x + C</code></td>
+      <td>Constant <code>C</code> is y-intercept</td>
+      <td><code>A + C</code></td>
+      <td class="red">Usually hidden</td>
+    </tr>
+    <tr>
+      <td><code>A(b)^(x+c)</code></td>
+      <td>Coefficient <code>A</code> is y-intercept</td>
+      <td><code>A(b)^c</code></td>
+      <td class="red">Hidden unless rewritten</td>
+    </tr>
+    <tr>
+      <td><code>A(b^x + D)</code></td>
+      <td>Inside constant <code>D</code> helps directly</td>
+      <td><code>A(1+D)</code></td>
+      <td class="red">Hidden</td>
+    </tr>
+    <tr>
+      <td><code>A(b)^x + D</code></td>
+      <td><code>D</code> is y-intercept</td>
+      <td><code>A + D</code></td>
+      <td class="red">Hidden unless combined</td>
+    </tr>
+    <tr>
+      <td><code>M(b)^x</code>, <code>x ≥ 0</code>, <code>b &gt; 1</code></td>
+      <td>Minimum may require work</td>
+      <td><code>M</code></td>
+      <td class="green">Minimum displayed</td>
+    </tr>
+    <tr>
+      <td><code>M(b)^(x+c)</code>, <code>x ≥ 0</code>, <code>b &gt; 1</code></td>
+      <td><code>M</code> is minimum</td>
+      <td><code>M(b)^c</code></td>
+      <td class="red">Hidden</td>
+    </tr>
+  </table>
+
+  <div class="callout">
+    <strong>Memory phrase:</strong> If exponent is exactly <code>x</code>, the coefficient is easy to trust.
+    If exponent is <code>x + something</code>, the coefficient is hiding another factor.
+  </div>
+</section>
+
+<section id="practice" class="section card">
+  <h2>Practice Bank: 2 Questions for Each Type</h2>
+
+  <h3>Type 1 Practice — Minimum / Maximum</h3>
+
+  <details>
+    <summary>Practice 1A: Minimum value</summary>
+    <p>For <code>x ≥ 0</code>, which equation displays, as a coefficient, the minimum value of the function it defines?</p>
+    <p>I. <code>f(x) = 45(1.2)^x</code></p>
+    <p>II. <code>g(x) = 45(1.2)^(x+2)</code></p>
+    <p>A. I only &nbsp; B. II only &nbsp; C. I and II &nbsp; D. Neither</p>
+    <div class="success">
+      <strong>Answer: A.</strong> Since <code>1.2 &gt; 1</code>, minimum occurs at <code>x=0</code>.
+      I gives <code>45</code> directly. II gives <code>45(1.2)^2</code>, not displayed directly.
+    </div>
+  </details>
+
+  <details>
+    <summary>Practice 1B: Maximum value</summary>
+    <p>For <code>x ≥ 0</code>, which equation displays, as a coefficient, the maximum value of the function it defines?</p>
+    <p>I. <code>p(x) = 80(0.5)^x</code></p>
+    <p>II. <code>q(x) = 20(0.5)^(x-2)</code></p>
+    <p>A. I only &nbsp; B. II only &nbsp; C. I and II &nbsp; D. Neither</p>
+    <div class="success">
+      <strong>Answer: A.</strong> Since <code>0.5 &lt; 1</code>, the function decreases, so maximum occurs at <code>x=0</code>.
+      I displays <code>80</code>. II has maximum <code>20(0.5)^(-2)=80</code>, but <code>80</code> is not displayed directly.
+    </div>
+  </details>
+
+  <h3>Type 2 Practice — Equivalent Exponential Forms</h3>
+
+  <details>
+    <summary>Practice 2A</summary>
+    <p>The function <code>f</code> is defined by <code>f(x)=c(2^x+2^d)</code>. Equivalent forms are:</p>
+    <p>I. <code>g(x)=c(2^x+r)</code></p>
+    <p>II. <code>h(x)=c(2)^x+s</code></p>
+    <p>Which equation displays the y-coordinate of the y-intercept as a constant or coefficient?</p>
+    <p>A. I only &nbsp; B. II only &nbsp; C. I and II &nbsp; D. Neither</p>
+    <div class="success">
+      <strong>Answer: D.</strong> The y-intercept is <code>c(1+2^d)</code>.
+      I gives <code>c(1+r)</code>; II gives <code>c+s</code>. Neither displays the whole value directly.
+    </div>
+  </details>
+
+  <details>
+    <summary>Practice 2B</summary>
+    <p>The function <code>f</code> is defined by <code>f(x)=m(5^x+7)</code>. Equivalent forms are:</p>
+    <p>I. <code>g(x)=m(5^x+k)</code></p>
+    <p>II. <code>h(x)=m(5)^x+n</code></p>
+    <p>Which equation displays the y-coordinate of the y-intercept?</p>
+    <p>A. I only &nbsp; B. II only &nbsp; C. I and II &nbsp; D. Neither</p>
+    <div class="success">
+      <strong>Answer: D.</strong> The y-intercept is <code>m(1+7)=8m</code>.
+      Neither equation shows <code>8m</code> as one constant or coefficient.
+    </div>
+  </details>
+
+  <h3>Type 3 Practice — Shifted Exponent / Outside Constant</h3>
+
+  <details>
+    <summary>Practice 3A</summary>
+    <p>I. <code>f(x)=12(3)^(x+2)</code></p>
+    <p>II. <code>g(x)=12(3)^x+2</code></p>
+    <p>Which equation displays the y-coordinate of the y-intercept as a constant or coefficient?</p>
+    <p>A. I only &nbsp; B. II only &nbsp; C. I and II &nbsp; D. Neither</p>
+    <div class="success">
+      <strong>Answer: D.</strong> I has y-intercept <code>12(3)^2=108</code>, not displayed.
+      II has y-intercept <code>12+2=14</code>, not displayed as one constant/coefficient.
+    </div>
+  </details>
+
+  <details>
+    <summary>Practice 3B</summary>
+    <p>I. <code>f(x)=75(4)^x</code></p>
+    <p>II. <code>g(x)=15(4)^(x+1)</code></p>
+    <p>Which equation displays the y-coordinate of the y-intercept as a constant or coefficient?</p>
+    <p>A. I only &nbsp; B. II only &nbsp; C. I and II &nbsp; D. Neither</p>
+    <div class="success">
+      <strong>Answer: A.</strong> I has y-intercept <code>75</code> and displays it.
+      II has y-intercept <code>15(4)=60</code>, but displays coefficient <code>15</code>.
+    </div>
+  </details>
+</section>
+
+<section id="routine" class="section card">
+  <h2>Sean’s 20-Second Exam Routine</h2>
+
+  <ol class="routine">
+    <li><strong>Circle the target phrase.</strong> Is the question asking for y-intercept, minimum, maximum, or a specific function value?</li>
+    <li><strong>Choose the anchor input.</strong> Y-intercept uses <code>x=0</code>. Endpoint minimum/maximum usually uses <code>x=0</code> when domain is <code>x≥0</code>.</li>
+    <li><strong>Compute the exact target value.</strong> Keep it symbolic if needed, like <code>a(1+3.1^b)</code>.</li>
+    <li><strong>Compare to the equation.</strong> Is that whole value already visible as one constant or coefficient?</li>
+    <li><strong>Do not be fooled by equivalent forms.</strong> Equivalent functions may still hide the requested value.</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Notebook line:</strong> “Can I see the whole value, or do I still need to calculate it?”
+  </div>
+</section>
+
+</main>
+
+<footer>
+  SAT Math Function-Form Dashboard Wiki — Type 1, Type 2, and Type 3 review.
+</footer>
+
+</body>
+</html>

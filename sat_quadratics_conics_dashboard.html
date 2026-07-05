@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SAT Quadratics & Conics Wiki Dashboard</title>
+<style>
+  :root {
+    --bg: #f7f8fb;
+    --card: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+    --green-soft: #dcfce7;
+    --orange-soft: #ffedd5;
+    --purple-soft: #ede9fe;
+    --red-soft: #fee2e2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+  }
+  header {
+    background: linear-gradient(135deg, #1d4ed8, #4f46e5);
+    color: white;
+    padding: 34px 22px;
+  }
+  header .wrap, main {
+    max-width: 1120px;
+    margin: auto;
+  }
+  h1 {
+    margin: 0 0 8px;
+    font-size: 2.1rem;
+  }
+  .subtitle {
+    margin: 0;
+    opacity: 0.92;
+    font-size: 1.05rem;
+  }
+  main {
+    padding: 22px;
+  }
+  .dashboard {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 22px;
+    align-items: start;
+  }
+  nav {
+    position: sticky;
+    top: 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+  }
+  nav h2 {
+    font-size: 1rem;
+    margin: 0 0 10px;
+  }
+  nav a {
+    display: block;
+    padding: 8px 10px;
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 9px;
+    font-size: 0.95rem;
+  }
+  nav a:hover {
+    background: var(--accent-soft);
+    color: #1d4ed8;
+  }
+  section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+  }
+  h2 {
+    margin: 0 0 14px;
+    font-size: 1.4rem;
+  }
+  h3 {
+    margin: 18px 0 8px;
+    font-size: 1.05rem;
+  }
+  .formula {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 13px 15px;
+    border-radius: 12px;
+    font-family: "SFMono-Regular", Consolas, Menlo, monospace;
+    overflow-x: auto;
+    margin: 10px 0;
+    white-space: nowrap;
+  }
+  .callout {
+    border-left: 5px solid var(--accent);
+    background: var(--accent-soft);
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin: 12px 0;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 15px;
+    background: #fff;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+  .blue { background: var(--accent-soft); color: #1d4ed8; }
+  .green { background: var(--green-soft); color: #166534; }
+  .orange { background: var(--orange-soft); color: #9a3412; }
+  .purple { background: var(--purple-soft); color: #5b21b6; }
+  .red { background: var(--red-soft); color: #991b1b; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 0.95rem;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 10px;
+    vertical-align: top;
+  }
+  th {
+    background: #f3f4f6;
+    text-align: left;
+  }
+  .mini {
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+  .checklist li {
+    margin-bottom: 7px;
+  }
+  .footer {
+    color: var(--muted);
+    text-align: center;
+    padding: 20px 0 34px;
+    font-size: 0.9rem;
+  }
+  @media (max-width: 850px) {
+    .dashboard {
+      grid-template-columns: 1fr;
+    }
+    nav {
+      position: static;
+    }
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>SAT Quadratics & Conics Wiki Dashboard</h1>
+    <p class="subtitle">Quick reference for quadratic forms, vertices, roots, discriminants, circles, ellipses, hyperbolas, and SAT-style decision strategies.</p>
+  </div>
+</header>
+
+<main>
+  <div class="dashboard">
+    <nav>
+      <h2>Jump to Section</h2>
+      <a href="#standard">1. Standard Quadratic Form</a>
+      <a href="#vertex-formula">2. Vertex Formula</a>
+      <a href="#vertex-form">3. Vertex Form</a>
+      <a href="#factored">4. Factored Form</a>
+      <a href="#quadratic-formula">5. Quadratic Formula</a>
+      <a href="#discriminant">6. Discriminant</a>
+      <a href="#complete-square">7. Completing the Square</a>
+      <a href="#max-min">8. Maximum / Minimum</a>
+      <a href="#axis">9. Axis of Symmetry</a>
+      <a href="#circle">10. Circle</a>
+      <a href="#ellipse">11. Ellipse</a>
+      <a href="#hyperbola">12. Hyperbola</a>
+      <a href="#recognition">13. Recognition Table</a>
+      <a href="#strategy">14. SAT Decision Strategy</a>
+      <a href="#q26">Q26 Pattern Recap</a>
+    </nav>
+
+    <div>
+      <section id="standard">
+        <h2>1. Standard Quadratic Form</h2>
+        <div class="formula">y = ax² + bx + c</div>
+        <p>This is the most common form on the SAT.</p>
+        <div class="grid">
+          <div class="card">
+            <span class="tag blue">Opening</span>
+            <p><strong>a &gt; 0</strong>: parabola opens up.</p>
+            <p><strong>a &lt; 0</strong>: parabola opens down.</p>
+          </div>
+          <div class="card">
+            <span class="tag green">Intercept Shortcut</span>
+            <p>The y-intercept is <strong>(0, c)</strong>, because when x = 0, y = c.</p>
+          </div>
+        </div>
+        <div class="callout">
+          <strong>Very useful SAT shortcut:</strong> a + b + c = f(1), because f(1) = a(1)² + b(1) + c.
+        </div>
+      </section>
+
+      <section id="vertex-formula">
+        <h2>2. Vertex Formula from Standard Form</h2>
+        <p>For:</p>
+        <div class="formula">y = ax² + bx + c</div>
+        <p>The x-coordinate of the vertex is:</p>
+        <div class="formula">x = -b / (2a)</div>
+        <p>Then plug that x-value back into the equation to get the y-coordinate.</p>
+        <div class="formula">Vertex = ( -b/(2a), f(-b/(2a)) )</div>
+        <h3>Example</h3>
+        <div class="formula">y = x² - 6x + 5</div>
+        <p>Here a = 1 and b = -6.</p>
+        <div class="formula">x = -(-6)/(2 · 1) = 3</div>
+        <div class="formula">y = 3² - 6(3) + 5 = -4</div>
+        <p>Vertex:</p>
+        <div class="formula">(3, -4)</div>
+      </section>
+
+      <section id="vertex-form">
+        <h2>3. Vertex Form</h2>
+        <div class="formula">y = a(x - h)² + k</div>
+        <p>The vertex is:</p>
+        <div class="formula">(h, k)</div>
+        <p>This is the best form when the problem gives a vertex.</p>
+        <div class="grid">
+          <div class="card">
+            <span class="tag orange">Sign Warning</span>
+            <p><strong>(x - 3)²</strong> means the vertex x-value is 3, not -3.</p>
+          </div>
+          <div class="card">
+            <span class="tag orange">Sign Warning</span>
+            <p><strong>(x + 4)²</strong> means the vertex x-value is -4.</p>
+          </div>
+        </div>
+        <h3>Example</h3>
+        <div class="formula">y = 2(x - 3)² - 5</div>
+        <p>Vertex:</p>
+        <div class="formula">(3, -5)</div>
+        <h3>Another Example</h3>
+        <div class="formula">y = a(x + 4)² + 7</div>
+        <p>Vertex:</p>
+        <div class="formula">(-4, 7)</div>
+      </section>
+
+      <section id="factored">
+        <h2>4. Factored Form / Intercept Form</h2>
+        <div class="formula">y = a(x - r₁)(x - r₂)</div>
+        <p>The x-intercepts are:</p>
+        <div class="formula">(r₁, 0) and (r₂, 0)</div>
+        <h3>Example</h3>
+        <div class="formula">y = 2(x - 1)(x - 5)</div>
+        <p>The x-intercepts are:</p>
+        <div class="formula">(1, 0) and (5, 0)</div>
+        <p>The axis of symmetry is halfway between the roots:</p>
+        <div class="formula">x = (r₁ + r₂) / 2</div>
+        <p>For this example:</p>
+        <div class="formula">x = (1 + 5) / 2 = 3</div>
+      </section>
+
+      <section id="quadratic-formula">
+        <h2>5. Quadratic Formula</h2>
+        <p>Use this when you need to solve:</p>
+        <div class="formula">ax² + bx + c = 0</div>
+        <div class="formula">x = [-b ± √(b² - 4ac)] / (2a)</div>
+        <p>This gives the x-intercepts of the parabola.</p>
+      </section>
+
+      <section id="discriminant">
+        <h2>6. Discriminant</h2>
+        <div class="formula">b² - 4ac</div>
+        <p>It tells you how many real x-intercepts the parabola has.</p>
+        <table>
+          <tr><th>Discriminant</th><th>Meaning</th></tr>
+          <tr><td>b² - 4ac &gt; 0</td><td>Two real solutions; the parabola crosses the x-axis twice.</td></tr>
+          <tr><td>b² - 4ac = 0</td><td>One real solution; the parabola touches the x-axis at the vertex.</td></tr>
+          <tr><td>b² - 4ac &lt; 0</td><td>No real solutions; the parabola does not touch the x-axis.</td></tr>
+        </table>
+      </section>
+
+      <section id="complete-square">
+        <h2>7. Completing the Square</h2>
+        <p>This converts standard form into vertex form.</p>
+        <h3>Example</h3>
+        <div class="formula">y = x² - 8x + 3</div>
+        <p>Group the x-terms:</p>
+        <div class="formula">y = (x² - 8x) + 3</div>
+        <p>Take half of -8, then square it:</p>
+        <div class="formula">-8 / 2 = -4, and (-4)² = 16</div>
+        <p>Add and subtract 16:</p>
+        <div class="formula">y = (x² - 8x + 16) - 16 + 3</div>
+        <div class="formula">y = (x - 4)² - 13</div>
+        <p>So the vertex is:</p>
+        <div class="formula">(4, -13)</div>
+        <div class="callout">SAT often tests completing the square because it reveals the vertex.</div>
+      </section>
+
+      <section id="max-min">
+        <h2>8. Maximum and Minimum Value</h2>
+        <p>For:</p>
+        <div class="formula">y = a(x - h)² + k</div>
+        <div class="grid">
+          <div class="card">
+            <span class="tag green">a &gt; 0</span>
+            <p>The parabola opens up, so the vertex is a <strong>minimum</strong>.</p>
+            <p>Minimum value = <strong>k</strong>.</p>
+          </div>
+          <div class="card">
+            <span class="tag red">a &lt; 0</span>
+            <p>The parabola opens down, so the vertex is a <strong>maximum</strong>.</p>
+            <p>Maximum value = <strong>k</strong>.</p>
+          </div>
+        </div>
+        <h3>Example</h3>
+        <div class="formula">y = -3(x - 2)² + 10</div>
+        <p>Since a = -3 &lt; 0, it opens downward.</p>
+        <p>Maximum value:</p>
+        <div class="formula">10</div>
+        <p>Vertex:</p>
+        <div class="formula">(2, 10)</div>
+      </section>
+
+      <section id="axis">
+        <h2>9. Axis of Symmetry</h2>
+        <table>
+          <tr><th>Form</th><th>Axis of symmetry</th></tr>
+          <tr><td>y = ax² + bx + c</td><td>x = -b / (2a)</td></tr>
+          <tr><td>y = a(x - h)² + k</td><td>x = h</td></tr>
+          <tr><td>y = a(x - r₁)(x - r₂)</td><td>x = (r₁ + r₂) / 2</td></tr>
+        </table>
+        <div class="callout">This is very useful when the SAT gives two roots.</div>
+      </section>
+
+      <section id="circle">
+        <h2>10. Circle Equation</h2>
+        <div class="formula">(x - h)² + (y - k)² = r²</div>
+        <p>Center:</p>
+        <div class="formula">(h, k)</div>
+        <p>Radius:</p>
+        <div class="formula">r</div>
+        <h3>Example</h3>
+        <div class="formula">(x - 3)² + (y + 2)² = 25</div>
+        <p>Center:</p>
+        <div class="formula">(3, -2)</div>
+        <p>Radius:</p>
+        <div class="formula">5</div>
+        <div class="callout">(y + 2)² means the center’s y-coordinate is -2.</div>
+      </section>
+
+      <section id="ellipse">
+        <h2>11. Ellipse Equation</h2>
+        <div class="formula">((x - h)² / a²) + ((y - k)² / b²) = 1</div>
+        <p>Center:</p>
+        <div class="formula">(h, k)</div>
+        <p>The larger denominator tells you the longer direction.</p>
+        <h3>Example</h3>
+        <div class="formula">((x - 2)² / 25) + ((y + 1)² / 9) = 1</div>
+        <p>Center:</p>
+        <div class="formula">(2, -1)</div>
+        <p>Since 25 &gt; 9, the ellipse is wider horizontally.</p>
+        <div class="formula">Horizontal radius = 5, Vertical radius = 3</div>
+        <div class="callout">On the SAT, you usually only need center, radius lengths, and basic graph interpretation.</div>
+      </section>
+
+      <section id="hyperbola">
+        <h2>12. Hyperbola Equation</h2>
+        <p>Less common on the SAT, but still possible.</p>
+        <h3>Horizontal hyperbola</h3>
+        <div class="formula">((x - h)² / a²) - ((y - k)² / b²) = 1</div>
+        <h3>Vertical hyperbola</h3>
+        <div class="formula">((y - k)² / a²) - ((x - h)² / b²) = 1</div>
+        <p>Center:</p>
+        <div class="formula">(h, k)</div>
+        <div class="callout">Circle and ellipse have plus between the squared terms. Hyperbola has minus between the squared terms.</div>
+      </section>
+
+      <section id="recognition">
+        <h2>13. SAT Pattern Recognition Table</h2>
+        <table>
+          <tr><th>Form</th><th>What it tells you immediately</th></tr>
+          <tr><td>y = ax² + bx + c</td><td>y-intercept is c; vertex uses -b/(2a).</td></tr>
+          <tr><td>y = a(x - h)² + k</td><td>Vertex is (h, k).</td></tr>
+          <tr><td>y = a(x - r₁)(x - r₂)</td><td>x-intercepts are r₁ and r₂.</td></tr>
+          <tr><td>(x - h)² + (y - k)² = r²</td><td>Circle center is (h, k), radius is r.</td></tr>
+          <tr><td>((x - h)² / a²) + ((y - k)² / b²) = 1</td><td>Ellipse center is (h, k), radii are a and b.</td></tr>
+          <tr><td>((x - h)² / a²) - ((y - k)² / b²) = 1</td><td>Hyperbola center is (h, k).</td></tr>
+        </table>
+      </section>
+
+      <section id="strategy">
+        <h2>14. Best SAT Decision Strategy</h2>
+        <p>When you see a quadratic question, first ask: <strong>What information is given?</strong></p>
+        <ul class="checklist">
+          <li>If given <strong>vertex</strong>, use <span class="formula" style="display:inline-block; padding:2px 6px; margin:0;">y = a(x - h)² + k</span></li>
+          <li>If given <strong>roots / x-intercepts</strong>, use <span class="formula" style="display:inline-block; padding:2px 6px; margin:0;">y = a(x - r₁)(x - r₂)</span></li>
+          <li>If given <strong>a, b, c</strong> and asked for vertex, use <span class="formula" style="display:inline-block; padding:2px 6px; margin:0;">x = -b/(2a)</span></li>
+          <li>If asked about <strong>number of solutions / intersections</strong>, use <span class="formula" style="display:inline-block; padding:2px 6px; margin:0;">b² - 4ac</span></li>
+          <li>If asked about <strong>a + b + c</strong>, think <span class="formula" style="display:inline-block; padding:2px 6px; margin:0;">a + b + c = f(1)</span></li>
+        </ul>
+      </section>
+
+      <section id="q26">
+        <h2>Q26 Pattern Recap</h2>
+        <p>Problem type: vertex given, asks for a + b + c.</p>
+        <ol>
+          <li>Vertex is (9, -14), so use vertex form:</li>
+        </ol>
+        <div class="formula">f(x) = a(x - 9)² - 14</div>
+        <ol start="2">
+          <li>The parabola intersects the x-axis at two points and the vertex is below the x-axis, so it opens upward.</li>
+        </ol>
+        <div class="formula">a &gt; 0</div>
+        <ol start="3">
+          <li>Recognize the shortcut:</li>
+        </ol>
+        <div class="formula">a + b + c = f(1)</div>
+        <ol start="4">
+          <li>Plug x = 1 into vertex form:</li>
+        </ol>
+        <div class="formula">f(1) = a(1 - 9)² - 14 = 64a - 14</div>
+        <ol start="5">
+          <li>Since a &gt; 0:</li>
+        </ol>
+        <div class="formula">64a - 14 &gt; -14</div>
+        <p>So a + b + c must be greater than -14. Among -23, -19, -14, and -12, only -12 works.</p>
+        <div class="formula">Answer: D, -12</div>
+      </section>
+
+      <p class="footer">Created as a quick-review SAT math wiki dashboard.</p>
+    </div>
+  </div>
+</main>
+</body>
+</html>

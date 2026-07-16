@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAT Math Dashboard Wiki: Unit Circle + Trig</title>
+  <script>
+    window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --navy:#12356b;--blue:#2563eb;--sky:#eff6ff;--green:#15803d;--mint:#f0fdf4;
+      --orange:#ea580c;--cream:#fff7ed;--purple:#7c3aed;--lav:#f5f3ff;--pink:#be185d;--rose:#fff1f2;
+      --teal:#0f766e;--cyan:#ecfeff;--text:#172033;--muted:#5b667a;--line:#d9e2ef;--gold:#f59e0b;
+      --shadow:0 8px 24px rgba(15,23,42,.08);
+    }
+    *{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,#f8fbff 0%,#eef5ff 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.55}
+    .wrap{max-width:1180px;margin:0 auto;padding:24px 18px 56px}.hero{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px 28px;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:before{content:"";position:absolute;inset:0 0 auto;height:8px;background:linear-gradient(90deg,var(--blue),var(--teal),var(--purple),var(--orange))}.eyebrow{color:var(--blue);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.78rem}.hero h1{margin:.25rem 0 .5rem;color:var(--navy);font-size:clamp(2rem,4vw,3.45rem);line-height:1.04}.subtitle{max-width:860px;color:var(--muted);font-size:1.08rem}.nav{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 0}.nav a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--navy);background:#f2f7ff;border:1px solid #cfe0ff;border-radius:999px;padding:8px 12px;font-weight:700;font-size:.92rem}.section-title{display:flex;align-items:center;gap:10px;margin:30px 0 14px;color:var(--navy)}.section-title .num{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;font-weight:900}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}.card h2,.card h3{margin:0 0 10px;color:var(--navy)}.card h3{font-size:1.08rem}.blue{border-top:5px solid var(--blue);background:linear-gradient(180deg,#fff,#f7fbff)}.green{border-top:5px solid var(--green);background:linear-gradient(180deg,#fff,#f8fff9)}.orange{border-top:5px solid var(--orange);background:linear-gradient(180deg,#fff,#fffaf5)}.purple{border-top:5px solid var(--purple);background:linear-gradient(180deg,#fff,#fbf9ff)}.pink{border-top:5px solid var(--pink);background:linear-gradient(180deg,#fff,#fff7fa)}.teal{border-top:5px solid var(--teal);background:linear-gradient(180deg,#fff,#f5ffff)}.span-3{grid-column:span 3}.span-4{grid-column:span 4}.span-5{grid-column:span 5}.span-6{grid-column:span 6}.span-7{grid-column:span 7}.span-8{grid-column:span 8}.span-12{grid-column:span 12}.formula{display:block;text-align:center;background:#fff;border:1px solid #cbd5e1;border-radius:12px;padding:14px 12px;margin:10px 0;font-size:1.1rem}.small{font-size:.92rem;color:var(--muted)}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.chip{padding:6px 10px;border-radius:999px;background:#eef6ff;border:1px solid #cfe0ff;color:#15376b;font-weight:700;font-size:.88rem}table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border:1px solid #dbe5f2;border-radius:12px;background:#fff}th,td{padding:10px 9px;border-bottom:1px solid #edf2f7;border-right:1px solid #edf2f7;text-align:center;vertical-align:middle}th:last-child,td:last-child{border-right:none}tr:last-child td{border-bottom:none}th{background:#f5f9ff;color:var(--navy)}.note{background:#f8fafc;border-left:4px solid var(--blue);padding:12px 14px;border-radius:12px;margin-top:10px}.flow{counter-reset:step;display:grid;gap:10px}.flow li{list-style:none;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start}.flow li:before{counter-increment:step;content:counter(step);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;font-weight:900}.angle-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.angle{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:10px;text-align:center}.angle b{color:var(--navy)}.svgbox{background:#fff;border:1px solid #dbe5f2;border-radius:18px;padding:10px;min-height:480px;overflow:auto}.unit-svg{width:100%;height:auto;min-width:650px}.point{fill:#2563eb}.axis{stroke:#0f172a;stroke-width:2}.radius{stroke:#cbd5e1;stroke-width:1}.circle{fill:none;stroke:#0f172a;stroke-width:2}.label{font-size:15px;fill:#111827}.rlabel{font-size:13px;fill:#2563eb;font-weight:700}.coord{font-size:13px;fill:#111827}.quad{font-size:13px;fill:#0f172a}.mini{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.mini .tile{background:#fff;border:1px solid #dbe5f2;border-radius:16px;padding:14px;text-align:center}.tile b{display:block;color:var(--navy);margin-bottom:4px}.callout{background:linear-gradient(135deg,#fff7ed,#fffbeb);border:1px solid #fed7aa;border-radius:18px;padding:16px;margin-top:16px}.practice{display:grid;grid-template-columns:1fr 1fr;gap:14px}.qa{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:14px}.answer{display:none;margin-top:10px;padding:10px;border-radius:12px;background:#f0fdf4;border:1px solid #bbf7d0}.qa.open .answer{display:block}.btn{border:0;border-radius:999px;padding:8px 12px;background:var(--navy);color:#fff;font-weight:800;cursor:pointer}.footer{margin-top:30px;text-align:center;color:var(--muted);font-size:.9rem}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-12{grid-column:span 1}.mini,.practice{grid-template-columns:1fr}.angle-grid{grid-template-columns:repeat(2,1fr)}}
+    @media print{body{background:#fff}.nav,.btn{display:none}.wrap{max-width:none}.card,.hero{box-shadow:none;break-inside:avoid}.section-title{break-after:avoid}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="eyebrow">SAT Math Dashboard Wiki</div>
+      <h1>Unit Circle + Trig</h1>
+      <p class="subtitle">A one-page interactive review for Sean: terminal side, coterminal angles, reference angles, ASTC signs, SOH-CAH-TOA, and SAT trig question patterns.</p>
+      <nav class="nav">
+        <a href="#unit">Unit circle</a><a href="#signs">Quadrants</a><a href="#special">Special angles</a><a href="#identities">Identities</a><a href="#practice">Practice</a>
+      </nav>
+    </header>
+
+    <div class="section-title" id="unit"><span class="num">1</span><h2>Core unit-circle idea</h2></div>
+    <section class="grid">
+      <article class="card blue span-4">
+        <h3>Terminal point</h3>
+        <p>On the unit circle, the terminal point is always:</p>
+        <div class="formula">$(x,y)=(\cos\theta,\sin\theta)$</div>
+        <table>
+          <tr><th>Function</th><th>Unit-circle meaning</th></tr>
+          <tr><td>$\cos\theta$</td><td>$x$-coordinate</td></tr>
+          <tr><td>$\sin\theta$</td><td>$y$-coordinate</td></tr>
+          <tr><td>$\tan\theta$</td><td>$\dfrac{y}{x}=\dfrac{\sin\theta}{\cos\theta}$</td></tr>
+        </table>
+      </article>
+      <article class="card teal span-4">
+        <h3>Terminal side / coterminal angles</h3>
+        <ul>
+          <li>Angles start on the positive $x$-axis.</li>
+          <li>Positive angles rotate counterclockwise.</li>
+          <li>Negative angles rotate clockwise.</li>
+          <li>Coterminal angles end on the same terminal side.</li>
+        </ul>
+        <div class="formula">$\theta \pm 360^\circ$ &nbsp; or &nbsp; $\theta \pm 2\pi$</div>
+      </article>
+      <article class="card orange span-4">
+        <h3>SAT solving flow</h3>
+        <ol class="flow">
+          <li>Make the angle coterminal if needed.</li>
+          <li>Find the quadrant.</li>
+          <li>Find the reference angle.</li>
+          <li>Use the special-angle value.</li>
+          <li>Apply the sign from the quadrant.</li>
+        </ol>
+      </article>
+
+      <article class="card span-12">
+        <h3>Unit Circle: Key SAT Angles</h3>
+        <div class="svgbox">
+          <svg class="unit-svg" viewBox="0 0 980 620" role="img" aria-label="Unit circle with key angles and coordinates">
+            <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#0f172a"/></marker></defs>
+            <line class="axis" x1="90" y1="310" x2="890" y2="310" marker-end="url(#arrow)"/><line class="axis" x1="490" y1="560" x2="490" y2="60" marker-end="url(#arrow)"/>
+            <circle class="circle" cx="490" cy="310" r="210"/>
+            <text class="label" x="900" y="302">x</text><text class="label" x="500" y="70">y</text><text class="label" x="500" y="330">O</text>
+            <script type="application/ecmascript"><![CDATA[]]></script>
+            <!-- radial lines and point labels generated manually -->
+            <g id="radii">
+              <line class="radius" x1="490" y1="310" x2="700" y2="310"/><line class="radius" x1="490" y1="310" x2="671.9" y2="205"/><line class="radius" x1="490" y1="310" x2="638.5" y2="161.5"/><line class="radius" x1="490" y1="310" x2="595" y2="128.1"/><line class="radius" x1="490" y1="310" x2="490" y2="100"/>
+              <line class="radius" x1="490" y1="310" x2="385" y2="128.1"/><line class="radius" x1="490" y1="310" x2="341.5" y2="161.5"/><line class="radius" x1="490" y1="310" x2="308.1" y2="205"/><line class="radius" x1="490" y1="310" x2="280" y2="310"/>
+              <line class="radius" x1="490" y1="310" x2="308.1" y2="415"/><line class="radius" x1="490" y1="310" x2="341.5" y2="458.5"/><line class="radius" x1="490" y1="310" x2="385" y2="491.9"/><line class="radius" x1="490" y1="310" x2="490" y2="520"/>
+              <line class="radius" x1="490" y1="310" x2="595" y2="491.9"/><line class="radius" x1="490" y1="310" x2="638.5" y2="458.5"/><line class="radius" x1="490" y1="310" x2="671.9" y2="415"/>
+            </g>
+            <g>
+              <circle class="point" cx="700" cy="310" r="6"/><text class="label" x="710" y="300">0°</text><text class="rlabel" x="710" y="323">0</text><text class="coord" x="715" y="345">(1, 0)</text>
+              <circle class="point" cx="490" cy="100" r="6"/><text class="label" x="505" y="100">90°</text><text class="rlabel" x="505" y="122">π/2</text><text class="coord" x="455" y="85">(0, 1)</text>
+              <circle class="point" cx="280" cy="310" r="6"/><text class="label" x="210" y="300">180°</text><text class="rlabel" x="225" y="323">π</text><text class="coord" x="190" y="345">(-1, 0)</text>
+              <circle class="point" cx="490" cy="520" r="6"/><text class="label" x="505" y="520">270°</text><text class="rlabel" x="505" y="542">3π/2</text><text class="coord" x="450" y="570">(0, -1)</text>
+              <circle class="point" cx="671.9" cy="205" r="5"/><text class="label" x="690" y="205">30°</text><text class="rlabel" x="690" y="225">π/6</text><text class="coord" x="740" y="210">(√3/2, 1/2)</text>
+              <circle class="point" cx="638.5" cy="161.5" r="5"/><text class="label" x="655" y="155">45°</text><text class="rlabel" x="655" y="175">π/4</text><text class="coord" x="715" y="165">(√2/2, √2/2)</text>
+              <circle class="point" cx="595" cy="128.1" r="5"/><text class="label" x="605" y="115">60°</text><text class="rlabel" x="605" y="135">π/3</text><text class="coord" x="655" y="120">(1/2, √3/2)</text>
+              <circle class="point" cx="385" cy="128.1" r="5"/><text class="label" x="350" y="115">120°</text><text class="rlabel" x="352" y="135">2π/3</text><text class="coord" x="235" y="120">(-1/2, √3/2)</text>
+              <circle class="point" cx="341.5" cy="161.5" r="5"/><text class="label" x="300" y="155">135°</text><text class="rlabel" x="302" y="175">3π/4</text><text class="coord" x="145" y="165">(-√2/2, √2/2)</text>
+              <circle class="point" cx="308.1" cy="205" r="5"/><text class="label" x="260" y="205">150°</text><text class="rlabel" x="265" y="225">5π/6</text><text class="coord" x="90" y="210">(-√3/2, 1/2)</text>
+              <circle class="point" cx="308.1" cy="415" r="5"/><text class="label" x="260" y="415">210°</text><text class="rlabel" x="265" y="435">7π/6</text><text class="coord" x="75" y="420">(-√3/2, -1/2)</text>
+              <circle class="point" cx="341.5" cy="458.5" r="5"/><text class="label" x="300" y="465">225°</text><text class="rlabel" x="302" y="485">5π/4</text><text class="coord" x="120" y="470">(-√2/2, -√2/2)</text>
+              <circle class="point" cx="385" cy="491.9" r="5"/><text class="label" x="350" y="505">240°</text><text class="rlabel" x="352" y="525">4π/3</text><text class="coord" x="210" y="520">(-1/2, -√3/2)</text>
+              <circle class="point" cx="595" cy="491.9" r="5"/><text class="label" x="605" y="505">300°</text><text class="rlabel" x="605" y="525">5π/3</text><text class="coord" x="640" y="520">(1/2, -√3/2)</text>
+              <circle class="point" cx="638.5" cy="458.5" r="5"/><text class="label" x="655" y="465">315°</text><text class="rlabel" x="655" y="485">7π/4</text><text class="coord" x="715" y="470">(√2/2, -√2/2)</text>
+              <circle class="point" cx="671.9" cy="415" r="5"/><text class="label" x="690" y="415">330°</text><text class="rlabel" x="690" y="435">11π/6</text><text class="coord" x="740" y="420">(√3/2, -1/2)</text>
+            </g>
+          </svg>
+        </div>
+      </article>
+    </section>
+
+    <div class="section-title" id="signs"><span class="num">2</span><h2>Quadrants, signs, and reference angles</h2></div>
+    <section class="grid">
+      <article class="card green span-4">
+        <h3>ASTC sign rule</h3>
+        <table><tr><th>Quadrant</th><th>Positive functions</th></tr><tr><td>QI</td><td>All</td></tr><tr><td>QII</td><td>Sine</td></tr><tr><td>QIII</td><td>Tangent</td></tr><tr><td>QIV</td><td>Cosine</td></tr></table>
+        <div class="chips"><span class="chip">A = All</span><span class="chip">S = Sine</span><span class="chip">T = Tangent</span><span class="chip">C = Cosine</span></div>
+      </article>
+      <article class="card purple span-4">
+        <h3>Signs by quadrant</h3>
+        <table><tr><th>Quadrant</th><th>$\sin$</th><th>$\cos$</th><th>$\tan$</th></tr><tr><td>QI</td><td>+</td><td>+</td><td>+</td></tr><tr><td>QII</td><td>+</td><td>−</td><td>−</td></tr><tr><td>QIII</td><td>−</td><td>−</td><td>+</td></tr><tr><td>QIV</td><td>−</td><td>+</td><td>−</td></tr></table>
+      </article>
+      <article class="card orange span-4">
+        <h3>Reference angles</h3>
+        <table><tr><th>Quadrant</th><th>Reference angle</th></tr><tr><td>QI</td><td>$\theta$</td></tr><tr><td>QII</td><td>$180^\circ-\theta$</td></tr><tr><td>QIII</td><td>$\theta-180^\circ$</td></tr><tr><td>QIV</td><td>$360^\circ-\theta$</td></tr></table>
+      </article>
+    </section>
+
+    <div class="section-title" id="special"><span class="num">3</span><h2>Special angles and right-triangle trig</h2></div>
+    <section class="grid">
+      <article class="card orange span-7">
+        <h3>Must-memorize special angles</h3>
+        <table><tr><th>$\theta$</th><th>$0^\circ$</th><th>$30^\circ$</th><th>$45^\circ$</th><th>$60^\circ$</th><th>$90^\circ$</th></tr><tr><td>Radians</td><td>$0$</td><td>$\pi/6$</td><td>$\pi/4$</td><td>$\pi/3$</td><td>$\pi/2$</td></tr><tr><td>$\sin\theta$</td><td>$0$</td><td>$1/2$</td><td>$\sqrt2/2$</td><td>$\sqrt3/2$</td><td>$1$</td></tr><tr><td>$\cos\theta$</td><td>$1$</td><td>$\sqrt3/2$</td><td>$\sqrt2/2$</td><td>$1/2$</td><td>$0$</td></tr><tr><td>$\tan\theta$</td><td>$0$</td><td>$\sqrt3/3$</td><td>$1$</td><td>$\sqrt3$</td><td>undefined</td></tr></table>
+      </article>
+      <article class="card teal span-5">
+        <h3>SOH-CAH-TOA</h3>
+        <div class="formula">$\sin\theta=\dfrac{\text{opposite}}{\text{hypotenuse}}$</div>
+        <div class="formula">$\cos\theta=\dfrac{\text{adjacent}}{\text{hypotenuse}}$</div>
+        <div class="formula">$\tan\theta=\dfrac{\text{opposite}}{\text{adjacent}}$</div>
+      </article>
+    </section>
+
+    <div class="section-title" id="identities"><span class="num">4</span><h2>Useful identities and SAT question types</h2></div>
+    <section class="grid">
+      <article class="card green span-4">
+        <h3>Pythagorean identity</h3>
+        <div class="formula">$\sin^2\theta+\cos^2\theta=1$</div>
+        <p>Use this when one trig value is given and another is needed. Then use the quadrant to choose the sign.</p>
+      </article>
+      <article class="card purple span-4">
+        <h3>Complementary angles</h3>
+        <p>If $A+B=90^\circ$, then:</p>
+        <div class="formula">$\sin A=\cos B$<br/>$\cos A=\sin B$</div>
+      </article>
+      <article class="card pink span-4">
+        <h3>Common SAT trig question types</h3>
+        <ul>
+          <li>Find trig values from a point $(x,y)$ on the terminal side.</li>
+          <li>Determine sign from quadrant.</li>
+          <li>Use right-triangle ratios.</li>
+          <li>Use complementary angles.</li>
+          <li>Convert degrees and radians.</li>
+        </ul>
+      </article>
+      <article class="card blue span-12">
+        <h3>Quick reminders</h3>
+        <div class="mini"><div class="tile"><b>Unit circle point</b>$(\cos\theta,\sin\theta)$</div><div class="tile"><b>Tangent</b>$\tan\theta=\dfrac{\sin\theta}{\cos\theta}=\dfrac{y}{x}$</div><div class="tile"><b>Radians</b>$180^\circ=\pi$</div><div class="tile"><b>ASTC</b>All, Sine, Tangent, Cosine</div></div>
+      </article>
+    </section>
+
+    <div class="section-title" id="practice"><span class="num">5</span><h2>Mini practice bank</h2></div>
+    <section class="practice">
+      <div class="qa"><b>1. Find $\sin 240^\circ$, $\cos 240^\circ$, and $\tan 240^\circ$.</b><br/><button class="btn" onclick="this.parentElement.classList.toggle('open')">Show answer</button><div class="answer">$240^\circ$ is QIII. Reference angle $=60^\circ$. So $\sin=-\sqrt3/2$, $\cos=-1/2$, $\tan=\sqrt3$.</div></div>
+      <div class="qa"><b>2. The terminal side passes through $(-8,15)$. Find $\tan\theta$.</b><br/><button class="btn" onclick="this.parentElement.classList.toggle('open')">Show answer</button><div class="answer">$\tan\theta=y/x=15/(-8)=-15/8$.</div></div>
+      <div class="qa"><b>3. If $A+B=90^\circ$ and $\sin A=\sqrt{15}/4$, find $\cos B$.</b><br/><button class="btn" onclick="this.parentElement.classList.toggle('open')">Show answer</button><div class="answer">Complementary identity: $\sin A=\cos B$, so $\cos B=\sqrt{15}/4$.</div></div>
+      <div class="qa"><b>4. If $\cos\theta=-4/5$ and $\theta$ is in QII, find $\sin\theta$.</b><br/><button class="btn" onclick="this.parentElement.classList.toggle('open')">Show answer</button><div class="answer">$\sin^2+\cos^2=1$. $\sin^2=1-16/25=9/25$. QII sine is positive, so $\sin\theta=3/5$.</div></div>
+    </section>
+    <p class="footer">SAT Math Dashboard Wiki — Unit Circle + Trig review.</p>
+  </div>
+</body>
+</html>

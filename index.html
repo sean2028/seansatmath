@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Sean SAT Math Dashboard 2026</title>
+
 <style>
   :root {
     --bg: #f6f8fb;
@@ -14,7 +15,11 @@
     --blue: #2563eb;
     --blue-dark: #1e3a8a;
   }
-  * { box-sizing: border-box; }
+
+  * {
+    box-sizing: border-box;
+  }
+
   body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
@@ -22,62 +27,88 @@
     color: var(--text);
     line-height: 1.55;
   }
+
   header {
     background: linear-gradient(135deg, #111827, #1e3a8a);
     color: white;
     padding: 44px 24px;
   }
+
   .wrap {
     max-width: 1050px;
     margin: 0 auto;
   }
+
   h1 {
     margin: 0 0 10px;
     font-size: 2.35rem;
     letter-spacing: -0.03em;
   }
+
   .subtitle {
     margin: 0;
     color: #dbeafe;
     font-size: 1.05rem;
     max-width: 850px;
   }
+
   main {
     max-width: 1050px;
     margin: 0 auto;
     padding: 26px 20px 56px;
   }
+
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
     gap: 20px;
   }
+
   .card {
+    display: flex;
+    flex-direction: column;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 18px;
     padding: 24px;
     box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
   }
+
   h2 {
     margin: 0 0 10px;
     font-size: 1.35rem;
   }
+
   p {
     margin: 8px 0 18px;
   }
+
+  .card p {
+    flex-grow: 1;
+  }
+
   a.button {
     display: inline-block;
+    align-self: flex-start;
     background: var(--blue);
     color: white;
     text-decoration: none;
     padding: 12px 16px;
     border-radius: 12px;
     font-weight: 700;
+    transition: background 0.2s ease, transform 0.2s ease;
   }
+
   a.button:hover {
     background: var(--blue-dark);
+    transform: translateY(-1px);
   }
+
+  a.button:focus {
+    outline: 3px solid #bfdbfe;
+    outline-offset: 3px;
+  }
+
   .note {
     margin-top: 24px;
     background: #eff6ff;
@@ -85,55 +116,124 @@
     padding: 14px 16px;
     border-radius: 12px;
   }
+
   footer {
     text-align: center;
     color: var(--muted);
     padding: 26px;
     font-size: 0.9rem;
   }
+
+  @media (max-width: 600px) {
+    header {
+      padding: 34px 20px;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .card {
+      padding: 21px;
+    }
+
+    a.button {
+      width: 100%;
+      text-align: center;
+    }
+  }
 </style>
 </head>
+
 <body>
+
 <header>
   <div class="wrap">
     <h1>Sean SAT Math Dashboard 2026</h1>
+
     <p class="subtitle">
-      Quick-review SAT Math dashboards for function-form recognition, quadratics, conics,
-      and high-frequency College Board style decision strategies.
+      Quick-review SAT Math dashboards covering function forms, quadratics and conics,
+      unit-circle trigonometry, logarithms, exponential functions, complex numbers,
+      and high-frequency College Board-style problem-solving strategies.
     </p>
   </div>
 </header>
 
 <main>
+
   <div class="grid">
+
     <div class="card">
       <h2>Function Form Dashboard</h2>
+
       <p>
-        Covers “displays as a constant or coefficient” questions:
-        exponential minimum/maximum, y-intercepts, equivalent forms, and shifted exponent traps.
+        Covers questions asking what a constant or coefficient represents,
+        including exponential minimum and maximum values, y-intercepts,
+        equivalent forms, and shifted-exponent traps.
       </p>
-      <a class="button" href="sat_function_form_dashboard.html">Open Function Form Dashboard</a>
+
+      <a class="button" href="sat_function_form_dashboard.html">
+        Open Function Form Dashboard
+      </a>
     </div>
 
     <div class="card">
-      <h2>Quadratics & Conics Dashboard</h2>
+      <h2>Quadratics &amp; Conics Dashboard</h2>
+
       <p>
-        Covers quadratic forms, vertex formula, factored form, discriminant,
+        Covers quadratic forms, vertex formulas, factored form, the discriminant,
         completing the square, circles, ellipses, hyperbolas, and SAT decision strategies.
       </p>
-      <a class="button" href="sat_quadratics_conics_dashboard.html">Open Quadratics & Conics Dashboard</a>
+
+      <a class="button" href="sat_quadratics_conics_dashboard.html">
+        Open Quadratics &amp; Conics Dashboard
+      </a>
     </div>
+
+    <div class="card">
+      <h2>Unit Circle &amp; Trigonometry Dashboard</h2>
+
+      <p>
+        Covers degrees and radians, reference and terminal angles, quadrant signs,
+        unit-circle coordinates, sine, cosine, tangent, special triangles,
+        and common SAT trigonometry strategies.
+      </p>
+
+      <a class="button" href="sat_unit_circle_trig_dashboard.html">
+        Open Unit Circle &amp; Trigonometry Dashboard
+      </a>
+    </div>
+
+    <div class="card">
+      <h2>Logs, Exponentials &amp; Complex Numbers</h2>
+
+      <p>
+        Covers logarithm rules, exponential growth and decay, solving exponential
+        equations, imaginary numbers, complex-number operations, and common SAT traps.
+      </p>
+
+      <a class="button" href="sat_log_exp_complex_dashboard.html">
+        Open Logs, Exponentials &amp; Complex Numbers Dashboard
+      </a>
+    </div>
+
   </div>
 
   <div class="note">
-    <strong>Suggested Google Sites use:</strong> Add this GitHub Pages homepage as a button or embedded URL
-    on your Google Site. GitHub Pages will host the styled HTML dashboards; Google Sites can remain the
-    parent-facing hub.
+    <strong>Study suggestion:</strong>
+    Use each dashboard for quick concept review, then immediately complete several
+    related SAT questions to practice identifying the correct method under time pressure.
   </div>
+
 </main>
 
 <footer>
   Created as Sean’s SAT Math dashboard hub.
 </footer>
+
 </body>
 </html>

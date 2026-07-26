@@ -512,19 +512,113 @@
 
       <section id="q22">
         <h2>Practice 4, Q22 Pattern Recap</h2>
-        <p>Problem type: vertex given; asks for \(a+b+c\).</p>
-        <ol>
-          <li>Recognize \(a+b+c=f(1)\).</li>
-          <li>Vertex \((9,-14)\) gives \(f(x)=A(x-9)^2-14\).</li>
-          <li>Two x-intercepts and a vertex below the x-axis mean the parabola opens upward, so \(A&gt;0\).</li>
-        </ol>
+        <p>
+          A parabola has vertex \((9,-14)\), intersects the x-axis at two points,
+          and is written in standard form:
+        </p>
+        <div class="formula">\[f(x)=ax^2+bx+c\]</div>
+        <p>The question asks which value could equal \(a+b+c\).</p>
+
+        <h3>Step 1: Recognize \(a+b+c\) as a function value</h3>
+        <div class="formula">
+          \[
+          f(1)=a(1)^2+b(1)+c=a+b+c
+          \]
+        </div>
+        <div class="callout">
+          <strong>Key SAT recognition:</strong>
+          The expression \(a+b+c\) is simply \(f(1)\).
+          The question is asking for a possible y-value when \(x=1\).
+        </div>
+
+        <h3>Step 2: Determine whether the vertex is a minimum or maximum</h3>
+        <p>
+          The vertex is below the x-axis because \(-14&lt;0\), and the parabola intersects
+          the x-axis twice. Therefore, the graph must open upward.
+        </p>
+        <div class="formula">
+          \[
+          \text{Minimum value}=-14
+          \qquad\Longrightarrow\qquad
+          f(x)\ge -14
+          \]
+        </div>
+        <p>This immediately eliminates any answer choice below \(-14\).</p>
+
+        <h3>Step 3: Explain why \(-14\) itself does not work</h3>
+        <p>
+          The value \(-14\) occurs only at the vertex, and the vertex occurs at \(x=9\).
+          But \(a+b+c=f(1)\), and \(1\ne9\).
+        </p>
+        <div class="formula">
+          \[
+          f(1)&gt;-14
+          \]
+        </div>
+        <p>Among the choices, only \(-12\) is greater than \(-14\).</p>
+
+        <h3>Algebraic verification with vertex form</h3>
+        <p>
+          Write the parabola in vertex form using \(A\) for the leading coefficient
+          so it is not confused with the \(a\) in standard form:
+        </p>
+        <div class="formula">
+          \[
+          f(x)=A(x-9)^2-14
+          \]
+        </div>
+        <p>Because the parabola opens upward, \(A&gt;0\).</p>
         <div class="formula">
           \[
           f(1)=A(1-9)^2-14=64A-14
           \]
         </div>
-        <p>Since \(A&gt;0\), \(f(1)&gt;-14\). Among the choices, only \(-12\) works.</p>
-        <div class="answer"><strong>Answer:</strong> \(\boxed{-12}\)</div>
+        <p>Since \(A&gt;0\), \(64A&gt;0\), so \(f(1)&gt;-14\).</p>
+
+        <h3>Why \(-12\) is actually possible</h3>
+        <div class="formula">
+          \[
+          64A-14=-12
+          \]
+          \[
+          64A=2
+          \]
+          \[
+          A=\frac{1}{32}&gt;0
+          \]
+        </div>
+        <p>
+          Thus the parabola
+          \(f(x)=\frac{1}{32}(x-9)^2-14\)
+          is valid and gives \(f(1)=-12\).
+        </p>
+
+        <table>
+          <tr><th>Choice</th><th>Why it works or fails</th></tr>
+          <tr><td>\(-23\)</td><td>Below the minimum value \(-14\)</td></tr>
+          <tr><td>\(-19\)</td><td>Below the minimum value \(-14\)</td></tr>
+          <tr><td>\(-14\)</td><td>Occurs only at the vertex \(x=9\), not at \(x=1\)</td></tr>
+          <tr><td>\(-12\)</td><td>Greater than \(-14\) and can equal \(f(1)\)</td></tr>
+        </table>
+
+        <div class="answer">
+          <strong>Answer:</strong> \(\boxed{-12}\)
+        </div>
+
+        <h3>Useful coefficient-substitution patterns</h3>
+        <table>
+          <tr><th>Expression</th><th>Function value</th></tr>
+          <tr><td>\(c\)</td><td>\(f(0)\)</td></tr>
+          <tr><td>\(a+b+c\)</td><td>\(f(1)\)</td></tr>
+          <tr><td>\(a-b+c\)</td><td>\(f(-1)\)</td></tr>
+          <tr><td>\(4a+2b+c\)</td><td>\(f(2)\)</td></tr>
+        </table>
+
+        <div class="callout">
+          <strong>Best SAT decision path:</strong>
+          translate the coefficient expression into \(f(x)\), use the vertex to identify the
+          minimum or maximum, then eliminate impossible answer choices before doing any heavy algebra.
+        </div>
       </section>
 
       <p class="footer">Created as a quick-review SAT math wiki dashboard.</p>
